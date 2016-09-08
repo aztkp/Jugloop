@@ -1,0 +1,259 @@
+
+.main {
+  padding-top: 97px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.main_n {
+  padding: 70px 0;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.top_intro {
+  width: 100%;
+  height: 300px;
+  background-image: url('../img/top.jpg');
+  text-align: center;
+  padding-top: 50px;
+}
+
+.top_intro > p {
+  margin: 20px 10px;
+}
+
+
+.juggling_post {
+  padding-bottom: 10px;
+}
+
+.js10 {
+  font-size: 10px;
+}
+
+.js12 {
+  font-size: 12px;
+}
+
+.js14 {
+  font-size: 14px;
+}
+
+.js20 {
+  font-size: 20px;
+}
+
+.js24 {
+  font-size: 24px;
+}
+
+.float_l {
+  float: left;
+}
+
+.float_r {
+  float: right;
+}
+
+.infotool {
+  float: right;
+  margin-top: 5px;
+}
+
+.lev_box {
+  margin-top: 10px;
+  color: orange;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.con_box {
+  padding: 10px;
+  border:0;
+  border-bottom:1px dashed #999;
+}
+
+.jikan_box {
+  text-align: center;
+  font-size: 19px;
+}
+
+.tool_box {
+  text-align: center;
+  font-size: 12px;
+  color: red;
+}
+
+.t_img_box {
+  margin-top: 5px;
+  float:left;
+  width: 35%;
+}
+
+.t_info_box {
+  width: 60%;
+  float: left;
+  text-align: center;
+}
+
+.btn_menu {
+  overflow: hidden;
+}
+
+.t_btn_box {
+  width: 33.3%;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-bottom: 15px;
+  float: left;
+}
+
+.right-fixed {
+  float: right;
+}
+
+.left-fixed {
+  float: left;
+}
+
+.trick-box {
+  margin-top: 25px;
+}
+
+.trick_title {
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.trick_intro {
+  display: inline-block;
+  float: left;
+  margin-top: 8px;
+  padding-left: 10px;
+}
+
+.trick_pst {
+  display: inline-block;
+  padding-top: 2px;
+  padding-left: 18px;
+  float:left;
+}
+
+.trick_bar {
+  width: 100%;
+  display: inline-block;
+  padding-left: 10px;
+}
+
+.user_table td  {
+  height: 30px;
+  padding-right: 7px;
+}
+
+.follow_btn {
+  margin-bottom: 10px;
+}
+
+.user_info {
+  margin: 0 auto;
+}
+
+.user_info th {
+  padding: 10px 5px 0;
+  height: 20px;
+}
+
+.user_info td  {
+  text-align: center;
+  height: 30px;
+  padding: 0 5px 10px;
+}
+
+#top_m_title {
+  color: red;
+  font-size: 12px;
+}
+
+#top_m_time {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#top_m_msg {
+  font-size: 12px;
+  float: right;
+}
+
+#top_text {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#top_btn {
+  margin: 0 auto;
+  display: inline;
+  float: left;
+}
+
+#hitokoto {
+  margin-top: 10px;
+  margin-bottom: 5px;;
+  text-align: center;
+}
+
+#jikan {
+  font-size: 22px;
+}
+
+#tool {
+  font-size: 14px;
+}
+
+#button {
+  text-align: center;
+  padding: 0 0 15px;
+}
+
+#update_btn {
+  float: right;
+  margin: -10px auto;
+}
+
+#prof_img {
+  display: block;
+  margin: 0 auto;
+}
+
+#j_name {
+  text-align: center;
+  font-weight: bold;
+  font-size: 28px;
+  margin-top: -3px;
+}
+
+#j_goal {
+  text-align: center;
+}
+
+#j_title {
+  text-align: center;
+  font-size: 14px;
+  color: red;
+}
+
+#j_main {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#mes_box {
+  text-align: center;
+}
+
+#find_img {
+  padding-right: 10px;
+}

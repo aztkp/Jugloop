@@ -1,0 +1,44 @@
+
+.trick_panel {
+  overflow: hidden;
+}
+
+.trick_title {
+  font-size: 24px;
+}
+
+.trick_title_box {
+  width: 50%;
+  float: left;
+}
+
+.trick_count_box {
+  text-align: center;
+  width: 30%;
+  padding-top: 17px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-bottom: 15px;
+  float: left;
+}
+
+.trick_btn_box {
+  width: 20%;
+  padding-top: 17px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-bottom: 15px;
+  float: left;
+}
+
+#trick_level {
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+#trick_count {
+  font-size: 18px;
+  padding-top: 7px;
+  padding-left: 50px;
+}
