@@ -71,22 +71,17 @@
   float: left;
 }
 
-.top_imgbox {
-  margin-top: 5px;
-  float:left;
-  width: 35%;
-}
-
 .top_infobox {
   width: 60%;
   float: left;
   text-align: center;
 }
 
-
-
-
-
+.top_imgbox {
+  margin-top: 5px;
+  float:left;
+  width: 35%;
+}
 
 .juggling_post {
   padding-bottom: 10px;

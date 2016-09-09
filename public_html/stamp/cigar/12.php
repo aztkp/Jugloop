@@ -4,6 +4,7 @@
   $twitterLogin = new MyApp\TwitterLogin();
   $user = new MyApp\User();
   $postClass = new MyApp\Post();
+  $stamp = new MyApp\Stamp();
 
   if ($twitterLogin->isLoggedIn()) {
     $me = $_SESSION['me'];
@@ -21,6 +22,7 @@
     <title>Jugloop! | ジャグラーのための練習時間記録アプリケーション</title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/styles.css" rel="stylesheet">
+    <link href="../stamps.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,8 +45,299 @@
         <li><a href="/">Top</a></li>
         <li><a href="/stamp">Stamp</a></li>
         <li><a href="/stamp/cigar">Cigarbox</a></li>
-        <li class="active">Dancey's</li>
+        <li class="active">Dancey'sRoop</li>
       </ul>
+
+      <div class="trick_title text-success js24">ダンシーズループ</div>
+      <div class="trick_intro js14">4シガーの華</div><br><br>
+
+      <div class="well">
+        ルール<br>
+        　・技と技のインターバルは1秒以内とする<br>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 1 (2pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">3回</div></div>
+        <div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 1, 0) && $stamp->isDoneByCigar($me->id, 12, 2, 0)): ?>
+            <button class="btn btn-primary disabled">達成済
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 1, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="1">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php else: ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="1">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="2">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 2 (4pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">5回</div>
+        </div><div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 2, 0) && $stamp->isDoneByCigar($me->id, 12, 3, 0)): ?>
+            <button class="btn btn-primary disabled">達成済
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 2, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="2">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 1, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="2">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="4">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 3 (6pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">10回</div></div>
+        <div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 3, 0) && $stamp->isDoneByCigar($me->id, 12, 4, 0)): ?>
+            <button class="btn btn-primary disabled">達成済
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 3, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="3">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 2, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="3">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="12">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+          </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 4 (8pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">20回</div></div>
+        <div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 4, 0) && $stamp->isDoneByCigar($me->id, 12, 5, 0)): ?>
+            <button class="btn btn-primary disabled">達成済
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 4, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="4">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 3, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="4">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="8">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 5 (10pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">30回</div></div>
+        <div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 5, 0) && $stamp->isDoneByCigar($me->id, 12, 6, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="5">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 4, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="5">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="12">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 6 (2pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">3回</div></div>
+        <div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 6, 0) && $stamp->isDoneByCigar($me->id, 12, 7, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="6">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 5, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="6">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="12">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 7 (4pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">5回</div>
+        </div><div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 7, 0) && $stamp->isDoneByCigar($me->id, 12, 8, 0)): ?>
+            <button class="btn btn-primary disabled">達成済
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 7, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="7">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 6, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="7">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="4">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 8 (6pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">10回</div></div>
+        <div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 8, 0) && $stamp->isDoneByCigar($me->id, 12, 9, 0)): ?>
+            <button class="btn btn-primary disabled">達成済
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 8, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="8">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 7, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="8">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="12">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+          </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 9 (8pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">20回</div></div>
+        <div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 9, 0) && $stamp->isDoneByCigar($me->id, 12, 10, 0)): ?>
+            <button class="btn btn-primary disabled">達成済
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 9, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="9">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 8, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="9">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="8">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="panel panel-default trick_panel">
+        <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 10 (10pt)</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">30回</div></div>
+        <div class="trick_btn_box">
+          <?php if($stamp->isDoneByCigar($me->id, 12, 10, 0)): ?>
+            <form action="delete" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="10">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-primary">達成済
+            </form>
+          <?php elseif($stamp->isDoneByCigar($me->id, 12, 9, 0)): ?>
+            <form action="update" method="post">
+              <input type="hidden" name="trick_id" value="12">
+              <input type="hidden" name="level" value="10">
+              <input type="hidden" name="options" value="0">
+              <input type="hidden" name="point" value="12">
+              <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
+              <button class="btn btn-defalut">未達成
+            </form>
+          <?php else: ?>
+            <button class="btn btn-defalut disabled">未達成
+          <?php endif; ?>
+        </div>
+      </div>
+
   </div><!--main_n -->
       <?php if ($twitterLogin->isLoggedIn()): ?>
       <?php endif; ?>

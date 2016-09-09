@@ -200,7 +200,7 @@
 
       <div class="trick_title text-success js24">色変え中抜き</div>
       <div class="trick_intro js14">中抜きのオプション</div><br><br>
-
+<br>
       <div class="well">
         ルール<br>
         　・中抜き1セットを"1回"と数えることとする<br>

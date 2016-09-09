@@ -16,12 +16,11 @@
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isValidate = $user->__validateToken();
     if ($isValidate) {
-      var_dump($_POST);
       if ($_POST['status'] === "update") {
         $stamp->createCigarStamp($_POST);
       } elseif ($_POST['status'] === "delete") {
         $stamp->deleteCigarStamp($_POST);
       }
-    header('Location: 1');
+    header('Location:' . $_POST['trick_id'] );
     }
   }

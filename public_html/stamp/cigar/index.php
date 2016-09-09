@@ -79,16 +79,16 @@
       </ul>
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="t_img_box">
+          <div class="top_imgbox">
             <img src="../../img/test.png" width="100" class="right-fixed"/>
           </div>
-          <div class="t_info_box">
+          <div class="top_infobox">
             <div id="top_m_title">シガーボックスポイント</div>
             <div id="top_m_time"><?= h($stamp->getCigarScore($me->id));?>pt</div>
             <div id="top_m_title">次の段位まで</div>
             <div id="top_m_time"><?= h($info['lefttime'])?></div>
             <div class="infotool js12">
-            <a href="juggler/<?= h($me->id);?>">>>詳しく見る</a>
+            <a href="/juggler/<?= h($me->id);?>">>>詳しく見る</a>
           </div>
           </div>
         </div>
@@ -288,7 +288,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div>
-          <div class="trick_title text-success js24">ダイヤモンド</div>
+          <div class="trick_title text-success js24">ダイヤモンドループ</div>
           <div class="trick_intro js14">4シガーの王道</div><br><br>
         </div>
         <div class="trick_bar"><div class="progress progress-striped active">
@@ -305,7 +305,7 @@
       <div class="panel-body">
         <div>
           <div class="trick_title text-success js24">ダンシーズループ</div>
-          <div class="trick_intro js14">シガラーのあこがれ</div><br><br>
+          <div class="trick_intro js14">4シガーの華</div><br><br>
         </div>
         <div class="trick_bar"><div class="progress progress-striped active">
         <div class="progress-bar progress-bar-primary" style="width:<?= h($stamp->getCigarProgress($me->id, 12)); ?>%"></div></div></div>
