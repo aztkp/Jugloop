@@ -20,7 +20,7 @@
               break;
       case 2: header('Location: ../club');
               break;
-      case 3: header('Location: ../ring');
+      case 3: header('Location: ../ball');
               break;
       case 4: header('Location: ../dia');
               break;
@@ -42,8 +42,6 @@
                break;
     }
   }
-
-
  ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -75,7 +73,7 @@
       <ul class="breadcrumb">
         <li><a href="/">Top</a></li>
         <li><a href="/stamp">Stamp</a></li>
-        <li class="active">Devil Stick</li>
+        <li class="active">Yo-Yo-</li>
       </ul>
 
 
@@ -87,13 +85,13 @@
             <option value="2">クラブ</option>
             <option value="3">リング</option>
             <option value="4">ディアボロ</option>
-            <option value="5" selected>デビルスティック</option>
+            <option value="5">デビルスティック</option>
             <option value="6">フラワースティック</option>
             <option value="7">シガーボックス</option>
             <option value="8">コンタクトボール</option>
             <option value="9">けん玉</option>
             <option value="10">ポイ・スタッフ</option>
-            <option value="11">ヨーヨー</option>
+            <option value="11" selected>ヨーヨー</option>
             <option value="12">その他</option>
           </select>
         </div>

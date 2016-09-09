@@ -20,7 +20,7 @@
               break;
       case 2: header('Location: ../club');
               break;
-      case 3: header('Location: ../ball');
+      case 3: header('Location: ../ring');
               break;
       case 4: header('Location: ../dia');
               break;
@@ -34,14 +34,15 @@
               break;
       case 9: header('Location: ../kendama');
               break;
-      case 10: header('Location: ../ball');
+      case 10: header('Location: ../poi-staff');
                break;
-      case 11: header('Location: ../ball');
+      case 11: header('Location: ../yo-yo-');
                break;
-      case 12: header('Location: ../ball');
+      case 12: header('Location: ../others');
                break;
     }
   }
+
 
  ?>
 <!DOCTYPE html>
@@ -97,18 +98,18 @@
       <div class="form-group">
         <div class="col-xs-8">
           <select class="form-control" name="tool">
-            <option value="1" <?php if($me->main_tool == 1) echo "selected";?>>ボール</option>
-            <option value="2" <?php if($me->main_tool == 2) echo "selected";?>>クラブ</option>
-            <option value="3" <?php if($me->main_tool == 3) echo "selected";?>>リング</option>
-            <option value="4" <?php if($me->main_tool == 4) echo "selected";?>>ディアボロ</option>
-            <option value="5" <?php if($me->main_tool == 5) echo "selected";?>>デビルスティック</option>
-            <option value="6" <?php if($me->main_tool == 6) echo "selected";?>>フラワースティック</option>
-            <option value="7" <?php if($me->main_tool == 7) echo "selected";?>>シガーボックス</option>
-            <option value="8" <?php if($me->main_tool == 8) echo "selected";?>>コンタクトボール</option>
-            <option value="9" <?php if($me->main_tool == 9) echo "selected";?>>けん玉</option>
-            <option value="10" <?php if($me->main_tool == 10) echo "selected";?>>ポイ・スタッフ</option>
-            <option value="11" <?php if($me->main_tool == 11) echo "selected";?>>ヨーヨー</option>
-            <option value="12" <?php if($me->main_tool == 12) echo "selected";?>>その他</option>
+            <option value="1">ボール</option>
+            <option value="2">クラブ</option>
+            <option value="3">リング</option>
+            <option value="4">ディアボロ</option>
+            <option value="5">デビルスティック</option>
+            <option value="6">フラワースティック</option>
+            <option value="7" selected>シガーボックス</option>
+            <option value="8">コンタクトボール</option>
+            <option value="9">けん玉</option>
+            <option value="10">ポイ・スタッフ</option>
+            <option value="11">ヨーヨー</option>
+            <option value="12">その他</option>
           </select>
         </div>
       </div>
