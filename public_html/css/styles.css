@@ -1,31 +1,6 @@
 
-.main {
-  padding-top: 97px;
-  width: 400px;
-  margin: 0 auto;
-}
-
-.main_n {
-  padding: 70px 0;
-  width: 90%;
-  margin: 0 auto;
-}
-
-.top_intro {
-  width: 100%;
-  height: 300px;
-  background-image: url('../img/top.jpg');
+.cnt {
   text-align: center;
-  padding-top: 50px;
-}
-
-.top_intro > p {
-  margin: 20px 10px;
-}
-
-
-.juggling_post {
-  padding-bottom: 10px;
 }
 
 .js10 {
@@ -56,9 +31,65 @@
   float: right;
 }
 
-.infotool {
+.right-fixed {
   float: right;
+}
+
+.left-fixed {
+  float: left;
+}
+
+.main {
+  padding-top: 97px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.main_n {
+  padding: 70px 0;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.top_intro {
+  width: 100%;
+  height: 300px;
+  background-image: url('../img/top.jpg');
+  text-align: center;
+  padding-top: 50px;
+}
+
+.top_intro > p {
+  margin: 20px 10px;
+}
+
+.top_btnbox {
+  width: 33.3%;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-bottom: 15px;
+  float: left;
+}
+
+.top_imgbox {
   margin-top: 5px;
+  float:left;
+  width: 35%;
+}
+
+.top_infobox {
+  width: 60%;
+  float: left;
+  text-align: center;
+}
+
+
+
+
+
+
+.juggling_post {
+  padding-bottom: 10px;
 }
 
 .lev_box {
@@ -73,49 +104,6 @@
   padding: 10px;
   border:0;
   border-bottom:1px dashed #999;
-}
-
-.jikan_box {
-  text-align: center;
-  font-size: 19px;
-}
-
-.tool_box {
-  text-align: center;
-  font-size: 12px;
-  color: red;
-}
-
-.t_img_box {
-  margin-top: 5px;
-  float:left;
-  width: 35%;
-}
-
-.t_info_box {
-  width: 60%;
-  float: left;
-  text-align: center;
-}
-
-.btn_menu {
-  overflow: hidden;
-}
-
-.t_btn_box {
-  width: 33.3%;
-  padding-left: 2px;
-  padding-right: 2px;
-  margin-bottom: 15px;
-  float: left;
-}
-
-.right-fixed {
-  float: right;
-}
-
-.left-fixed {
-  float: left;
 }
 
 .trick-box {
@@ -172,6 +160,19 @@
   padding: 0 5px 10px;
 }
 
+.post_userinfo {
+  display: inline-block;
+  padding-top: 5px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+#top_btn {
+  margin: 0 auto;
+  display: inline;
+  float: left;
+}
+
 #top_m_title {
   color: red;
   font-size: 12px;
@@ -182,21 +183,36 @@
   font-size: 24px;
 }
 
-#top_m_msg {
+#post_userimg {
+  display: inline-block;
+}
+
+#post_lv {
+  font-size: 14px;
+  color: orange;
+}
+
+#post_time {
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+#post_tool {
+  font-size: 14px;
+}
+
+/*#top_m_msg {
   font-size: 12px;
   float: right;
-}
+}*/
 
-#top_text {
+/*#top_text {
   font-size: 28px;
   font-weight: bold;
-}
+}*/
 
-#top_btn {
-  margin: 0 auto;
-  display: inline;
-  float: left;
-}
+
 
 #hitokoto {
   margin-top: 10px;
@@ -204,13 +220,7 @@
   text-align: center;
 }
 
-#jikan {
-  font-size: 22px;
-}
 
-#tool {
-  font-size: 14px;
-}
 
 #button {
   text-align: center;

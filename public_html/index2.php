@@ -8,8 +8,8 @@
   if ($twitterLogin->isLoggedIn()) {
     $me = $_SESSION['me'];
     $juggler = $user->getUserFromId($me->id);
-    $info = $postClass->getInfoFromId($me->id);
     $posts = $postClass->getPosts($me->id);
+    $info = $postClass->getInfoFromId($me->id);
   }
  ?>
 
@@ -79,18 +79,14 @@
       </div>
 
           <?php foreach ($posts as $post) : ?>
-            <?php  $userinfo = $postClass->getInfoFromId($post->user_id); ?>
           <div class="juggling_post">
           <div class="panel panel-default">
+        	<div class="panel-heading">
+              <a href="status.php?id=<?php echo h($post->id); ?>">
+              <?php echo date("n月d日 G:i", strtotime(h($post->created)));?>
+            </a>
+        	</div>
         	<div class="panel-body">
-
-            <img src="
-              http://furyu.nazo.cc/twicon/<?= h($user->getScreenName($post->user_id)); ?>/original
-            " width="70" class="left-fixed"/>
-
-            <?= h($user->getJugglerName($post->user_id)); ?>
-            - Lv.<?= h($userinfo['level']) ?>
-
             <div class="jikan_box">
           		<span class="glyphicon glyphicon-time"></span><span id="jikan"><?php echo h(timeEcho($post->time)); ?></span>
             </div>
@@ -144,10 +140,6 @@
           <div class="infotool js14">
           <a href="edit/<?php echo h($post->id);?>">編集</a> ｜ <a href="delete/<?php echo h($post->id); ?>" >削除</a>
         </div>
-
-        <?php echo date("n月d日 G:i", strtotime(h($post->created)));?>
-        <!-- <?php var_dump($userinfo) ?> -->
-
           </div>
         	</div>
           </div>
@@ -162,7 +154,6 @@
       <?php else: ?>
         <?php include_once('top.html') ?>
       <?php endif; ?>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

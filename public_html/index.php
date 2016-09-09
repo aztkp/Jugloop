@@ -8,8 +8,8 @@
   if ($twitterLogin->isLoggedIn()) {
     $me = $_SESSION['me'];
     $juggler = $user->getUserFromId($me->id);
-    $posts = $postClass->getPosts($me->id);
     $info = $postClass->getInfoFromId($me->id);
+    $posts = $postClass->getPosts($me->id);
   }
  ?>
 
@@ -41,18 +41,18 @@
     <?php include_once('navbar.php') ?>
     <div class="main">
       <?php if ($twitterLogin->isLoggedIn()): ?>
-      <div class="btn_menu">
-      <div class="t_btn_box">
+      <div class="btn_menu" style="overflow: hidden;">
+      <div class="top_btnbox">
         <div id="button">
           <a href="new"><button class="btn btn-warning btn-block" id="top_btn">練習を記録</button></a>
         </div>
       </div>
-      <div class="t_btn_box">
+      <div class="top_btnbox">
         <div id="button">
           <a href="stamp/cigar"><button class="btn btn-warning btn-block" id="top_btn">スタンプ</button></a>
         </div>
       </div>
-      <div class="t_btn_box">
+      <div class="top_btnbox">
         <div id="button">
           <a href="juggler/<?=h($me->id);?>"><button class="btn btn-warning btn-block" id="top_btn">マイページ</button></a>
         </div>
@@ -61,17 +61,15 @@
 
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="t_img_box">
-            <img src="
-              http://furyu.nazo.cc/twicon/<?= h($me->tw_screen_name); ?>/original
-            " width="100" class="right-fixed"/>
+          <div class="top_imgbox">
+            <img src="http://furyu.nazo.cc/twicon/<?= h($me->tw_screen_name); ?>/original" width="100" class="right-fixed"/>
           </div>
-          <div class="t_info_box">
+          <div class="top_infobox">
             <div id="top_m_title">今月の練習時間</div>
             <div id="top_m_time"><?= h(timeEcho($info['monthtime'][0]))?></div>
             <div id="top_m_title">次のレベルまで</div>
             <div id="top_m_time"><?= h($info['lefttime'])?></div>
-            <div class="infotool js12">
+            <div class="js12 right-fixed">
             <a href="juggler/<?= h($me->id);?>">>>詳しく見る</a>
           </div>
           </div>
@@ -79,19 +77,25 @@
       </div>
 
           <?php foreach ($posts as $post) : ?>
+            <?php  $userinfo = $postClass->getInfoFromId($post->user_id); ?>
           <div class="juggling_post">
           <div class="panel panel-default">
-        	<div class="panel-heading">
-              <a href="status.php?id=<?php echo h($post->id); ?>">
-              <?php echo date("n月d日 G:i", strtotime(h($post->created)));?>
-            </a>
-        	</div>
         	<div class="panel-body">
-            <div class="jikan_box">
-          		<span class="glyphicon glyphicon-time"></span><span id="jikan"><?php echo h(timeEcho($post->time)); ?></span>
+            <a href="juggler/<?= h($post->user_id);?>">
+            <img src="http://furyu.nazo.cc/twicon/<?= h($user->getScreenName($post->user_id)); ?>/original" width="70" class="left-fixed" id="post_userimg"/></a>
+
+            <div class="post_userinfo">
+              <a href="juggler/<?= h($post->user_id);?>">
+              <strong><?= h($user->getJugglerName($post->user_id)); ?></strong></a>
+              <strong><span id="post_lv">- Lv.<?= h($userinfo['level']) ?></span></strong>
+                 <span class="js12 text-muted" style="margin-left: 15px;"><?= date("n月d日 G:i", strtotime(h($post->created)));?>に記録</span>
             </div>
-            <div class="tool_box">
-              <span class="glyphicon glyphicon-wrench"></span><span id="tool">
+
+            <div class="cnt" style="padding-top: 10px;">
+          		<span id="post_time"><span class="glyphicon glyphicon-time js20"></span><?= h(timeEcho($post->time));?></span>
+            </div>
+            <div class="cnt text-primary" style="padding-left: 70px;">
+              <span id="post_tool"><span class="glyphicon glyphicon-wrench"></span>
               <?php switch ($post->tool) {
                 case "1" :
                   echo "ボール";
@@ -137,9 +141,14 @@
               <?php echo h($post->hitokoto); ?>
           </div>
         <?php endif; ?>
-          <div class="infotool js14">
+
+       <?php if($me->id === $post->user_id): ?>
+          <div class="right-fixed js14" style="margin-top: 5px;">
           <a href="edit/<?php echo h($post->id);?>">編集</a> ｜ <a href="delete/<?php echo h($post->id); ?>" >削除</a>
-        </div>
+          </div>
+      <?php endif; ?>
+
+
           </div>
         	</div>
           </div>
@@ -154,6 +163,7 @@
       <?php else: ?>
         <?php include_once('top.html') ?>
       <?php endif; ?>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
