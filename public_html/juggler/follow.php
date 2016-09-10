@@ -54,7 +54,6 @@
           </a></li>
            <li class="active">Follow</li>
         </ul>
-
         <?php if($users != null): ?>
         <?php foreach($users as $user): ?>
 

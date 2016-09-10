@@ -41,7 +41,7 @@
    </head>
    <body>
      <?php include_once('../navbar.php') ?>
-     <div class="main_n">
+     <div class="main">
      <h1 class="page-header">設定変更</h1>
      <form class="form-horizontal" method="post">
     	<div class="form-group">
@@ -114,10 +114,10 @@
     <h1 class="page-header">ログアウト</h1>
     <form action="../logout" method="post">
       <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
-      <button type="submit" class="btn btn-warning">ログアウトする</button>
+      <button type="submit" class="btn btn-warning right-fixed">ログアウトする</button>
     </form>
     <h1 class="page-header">退会する</h1>
-    <a href="delete"><button type="submit" class="btn btn-warning">退会手続きに入る</button></a>
+    <a href="delete"><button type="submit" class="btn btn-warning right-fixed">退会手続きに入る</button></a>
 
   </div>
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

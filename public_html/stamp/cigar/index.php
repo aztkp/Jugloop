@@ -83,10 +83,10 @@
             <img src="../../img/test.png" width="100" class="right-fixed"/>
           </div>
           <div class="top_infobox">
-            <div id="top_m_title">シガーボックスポイント</div>
-            <div id="top_m_time"><?= h($stamp->getCigarScore($me->id));?>pt</div>
-            <div id="top_m_title">次の段位まで</div>
-            <div id="top_m_time"><?= h($info['lefttime'])?></div>
+            <div class="text-primary js12">シガーボックスポイント</div>
+            <div class="bold js24"><?= h($stamp->getCigarScore($me->id));?>pt</div>
+            <div class="text-primary js12">次の段位まで</div>
+            <div class="bold js24"><?= h($info['lefttime'])?></div>
             <div class="infotool js12">
           </div>
           </div>

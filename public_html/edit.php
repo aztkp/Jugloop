@@ -48,7 +48,7 @@
    </head>
    <body>
      <?php include_once('navbar.php') ?>
-     <div class="main_n">
+     <div class="main">
      <?php if (isset($post) && $me->id === $post->user_id): ?>
        <h1 class="page-header">記録を編集</h1>
        <form class="form-horizontal" method="post">
@@ -106,8 +106,8 @@
         </div>
        </form>
      <?php else : ?>
-            <div class="main_n">
-     <div id=mes><?php echo "お探しのページにはアクセスできません"; ?></div>
+            <div class="main">
+     <div id=mes><?= "このページにアクセスする権限はありません"; ?></div>
    </div>
      <?php endif; ?>
    </div>

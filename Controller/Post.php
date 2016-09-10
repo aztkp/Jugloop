@@ -20,21 +20,24 @@ class Post {
   }
 
   public function getPosts($id) {
-    $followersId = $this->getFollowers($id);
-    $followers = implode(',', $followersId);
-    $sql = sprintf("select * from posts where user_id in ($followers) order by created desc");
+    $followersId = $this->getFollow($id);
+    $followersId = implode(',', $followersId);
+    $sql = sprintf("select * from posts where user_id in ($followersId) order by created desc");
     $stmt = $this->_db->query($sql);
     $res = $stmt->fetchAll(\PDO::FETCH_OBJ);
     return $res;
   }
 
-  public function getFollowers($user_id) {
+  public function getFollow($user_id) {
     $sql = sprintf("select user_id from following where follower_id=%d", $user_id);
     $stmt = $this->_db->query($sql);
-    $followers = $stmt->fetchAll(\PDO::FETCH_NUM);
-    if($this->_isFollowing($user_id)) $followers = $followers[0];
-    array_push($followers, $user_id);
-    return $followers;
+    $followers = $stmt->fetchAll(\PDO::FETCH_OBJ);
+    $followersId = [];
+    for ($i=0; $i<sizeof($followers); $i++) {
+      $followersId[$i]= $followers[$i]->user_id;
+    }
+    array_push($followersId, $user_id);
+    return $followersId;
   }
 
   public function getUserPosts($id) {

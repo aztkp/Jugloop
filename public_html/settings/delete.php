@@ -21,7 +21,7 @@
         setcookie(session_name(), '', time() - 86400, '/');
       }
       session_destroy();
-      
+
       goHome();
     }
   }
@@ -48,7 +48,7 @@
    </head>
    <body>
      <?php include_once('../navbar.php') ?>
-     <div class="main_n">
+     <div class="main">
     <h1 class="page-header">退会する</h1>
     <div class="alert alert-warning" role="alert">
     <b>Warning!</b><br>退会処理を行うと、これまでに行った練習記録、スタンプの記録、登録情報は破棄され、

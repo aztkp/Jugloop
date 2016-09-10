@@ -42,7 +42,7 @@
   </head>
   <body>
     <?php include_once('navbar.php') ?>
-    <div class="main_n">
+    <div class="main">
     <h1 class="page-header">記録する</h1>
     <form class="form-horizontal" method="post">
 
@@ -94,7 +94,7 @@
      <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
      <div class="control-group">
        <div class="controls">
-         <button type="submit" class="btn btn-primary">記録する</button>
+         <button type="submit" class="btn btn-primary right-fixed">記録する</button>
        </div>
      </div>
     </form>

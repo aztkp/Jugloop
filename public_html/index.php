@@ -11,6 +11,7 @@
     $info = $postClass->getInfoFromId($me->id);
     $posts = $postClass->getPosts($me->id);
   }
+
  ?>
 
 <!DOCTYPE html>
@@ -41,20 +42,20 @@
     <?php include_once('navbar.php') ?>
     <div class="main">
       <?php if ($twitterLogin->isLoggedIn()): ?>
-      <div class="btn_menu" style="overflow: hidden;">
+      <div style="overflow: hidden;">
       <div class="top_btnbox">
         <div id="button">
-          <a href="new"><button class="btn btn-warning btn-block" id="top_btn">練習を記録</button></a>
+          <a href="new"><button class="btn btn-warning btn-block top_btn">練習を記録</button></a>
         </div>
       </div>
       <div class="top_btnbox">
         <div id="button">
-          <a href="stamp/cigar"><button class="btn btn-warning btn-block" id="top_btn">スタンプ</button></a>
+          <a href="stamp/cigar"><button class="btn btn-warning btn-block top_btn">スタンプ</button></a>
         </div>
       </div>
       <div class="top_btnbox">
         <div id="button">
-          <a href="juggler/<?=h($me->id);?>"><button class="btn btn-warning btn-block" id="top_btn">マイページ</button></a>
+          <a href="juggler/<?=h($me->id);?>"><button class="btn btn-warning btn-block top_btn">マイページ</button></a>
         </div>
       </div>
     </div>
@@ -65,10 +66,10 @@
             <img src="http://furyu.nazo.cc/twicon/<?= h($me->tw_screen_name); ?>/original" width="100" class="right-fixed"/>
           </div>
           <div class="top_infobox">
-            <div id="top_m_title">今月の練習時間</div>
-            <div id="top_m_time"><?= h(timeEcho($info['monthtime'][0]))?></div>
-            <div id="top_m_title">次のレベルまで</div>
-            <div id="top_m_time"><?= h($info['lefttime'])?></div>
+            <div class="text-primary js12">今月の練習時間</div>
+            <div class="bold js24"><?= h(timeEcho($info['monthtime'][0]))?></div>
+            <div class="text-primary js12">次のレベルまで</div>
+            <div class="bold js24"><?= h($info['lefttime'])?></div>
             <div class="js12 right-fixed">
             <a href="juggler/<?= h($me->id);?>">>>詳しく見る</a>
           </div>
@@ -78,8 +79,7 @@
 
           <?php foreach ($posts as $post) : ?>
             <?php  $userinfo = $postClass->getInfoFromId($post->user_id); ?>
-          <div class="juggling_post">
-          <div class="panel panel-default">
+          <div class="panel panel-default" style="margin-bottom: 20px;">
         	<div class="panel-body">
             <a href="juggler/<?= h($post->user_id);?>">
             <img src="http://furyu.nazo.cc/twicon/<?= h($user->getScreenName($post->user_id)); ?>/original" width="70" class="left-fixed" id="post_userimg"/></a>
@@ -95,7 +95,7 @@
           		<span id="post_time"><span class="glyphicon glyphicon-time js20"></span><?= h(timeEcho($post->time));?></span>
             </div>
             <div class="cnt text-primary" style="padding-left: 70px;">
-              <span id="post_tool"><span class="glyphicon glyphicon-wrench"></span>
+              <span class="js14"><span class="glyphicon glyphicon-wrench"></span>
               <?php switch ($post->tool) {
                 case "1" :
                   echo "ボール";
@@ -137,7 +137,7 @@
               ?></span>
             </div>
           <?php if($post->hitokoto): ?>
-          <div class="well well-sm" id="hitokoto">
+          <div class="well well-sm" id="post_memo">
               <?php echo h($post->hitokoto); ?>
           </div>
         <?php endif; ?>
@@ -147,14 +147,11 @@
           <a href="edit/<?php echo h($post->id);?>">編集</a> ｜ <a href="delete/<?php echo h($post->id); ?>" >削除</a>
           </div>
       <?php endif; ?>
-
-
-          </div>
         	</div>
           </div>
         <?php endforeach; ?>
         <?php if (!isset($post)) : ?>
-          <div class="alert alert-success" id="mes_box">
+          <div class="alert alert-success cnt">
             まだ練習記録が存在しません。<br>
             練習を記録しましょう！
         </div>

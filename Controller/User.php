@@ -215,8 +215,12 @@ class User {
     if (!$this->_isFollowing($user_id)) return null;
     $sql = sprintf("select user_id from following where follower_id=%d", $user_id);
     $stmt = $this->_db->query($sql);
-    $followers = $stmt->fetchAll(\PDO::FETCH_NUM)[0];
-    return $followers;
+    $followers = $stmt->fetchAll(\PDO::FETCH_OBJ);
+    $followersId = [];
+    for ($i=0; $i<sizeof($followers); $i++) {
+      $followersId[$i]= $followers[$i]->user_id;
+    }
+    return $followersId;
   }
 
   private function _isFollowing($user_id) {

@@ -66,9 +66,9 @@
           </li>
        </ul>
 
-       <img src="http://furyu.nazo.cc/twicon/<?= h($juggler->tw_screen_name); ?>/original" id="prof_img" width="150"/>
-       <div class="lev_box">Lv.<?= h($info['level']); ?></div>
-       <h2 id="j_name">
+       <img src="http://furyu.nazo.cc/twicon/<?= h($juggler->tw_screen_name); ?>/original" id="juggler_img" width="150"/>
+       <div class="juggler_levbox">Lv.<?= h($info['level']); ?></div>
+       <h2 id="juggler_name">
          <?php if (isset($juggler->juggler_name)): ?>
          <?= h($juggler->juggler_name); ?>
          <?php else: ?>
@@ -82,7 +82,7 @@
            <input type="hidden" name="user_id" value="<?= h($juggler->id); ?>">
            <input type="hidden" name="follower_id" value="<?= h($me->id); ?>">
            <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
-           <center><button class="btn btn-primary btn-sm follow_btn">
+           <center><button class="btn btn-primary btn-sm" style="margin-bottom: 10px;">
              <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>フォロー解除
            </button></center>
            </form>
@@ -92,7 +92,7 @@
          <input type="hidden" name="user_id" value="<?= h($juggler->id); ?>">
          <input type="hidden" name="follower_id" value="<?= h($me->id); ?>">
          <input type="hidden" name="token" value="<?= h($_SESSION['token']); ?>">
-         <center><button class="btn btn-warning btn-sm follow_btn">
+         <center><button class="btn btn-warning btn-sm " style="margin-bottom: 10px;">
            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>フォローする
          </button></center>
          </form>
@@ -100,7 +100,7 @@
        <?php endif; ?>
 
        <div class="panel panel-default">
-         <table class="user_info">
+         <table class="juggler_info">
            <tbody>
              <tr>
                <th class="text-primary js12">ポスト数</th>
@@ -128,11 +128,11 @@
          </table>
        </div>
        <?php if($juggler->goal): ?>
-         <div class="well well-sm" id="j_goal">現在の目標：<?=h($juggler->goal); ?></div>
+         <div class="well well-sm cnt">現在の目標：<?=h($juggler->goal); ?></div>
       <?php endif; ?>
       <?php if($juggler->main_tool) : ?>
-      <div class="con_box"><div id='j_title'>メイン道具</div>
-      <div id='j_main'>
+      <div class="juggler_infobox"><div class='cnt js14 text-primary'>メイン道具</div>
+      <div class='cnt bold js24'>
         <?php switch ($juggler->main_tool) {
           case "1" :
             echo "ボール";
@@ -175,15 +175,15 @@
       </div></div>
     <?php endif; ?>
     <?php if($juggler->circle) : ?>
-      <div class="con_box"><div id='j_title'>所属サークル・団体</div>
-      <div id='j_main'><?= h($juggler->circle)?></div></div>
+      <div class="juggler_infobox"><div class='cnt js14 text-primary'>所属サークル・団体</div>
+      <div class='cnt bold js24'><?= h($juggler->circle)?></div></div>
     <?php endif; ?>
-       <div class="con_box"><div id='j_title'>総練習時間</div>
-       <div id='j_main'><?= h(timeEcho($info['alltime'][0]))?></div></div>
-       <div class="con_box"><div id='j_title'>次のレベルまで</div>
-       <div id='j_main'><?= h($info['lefttime'])?></div></div>
+       <div class="juggler_infobox"><div class='cnt js14 text-primary'>総練習時間</div>
+       <div class='cnt bold js24'><?= h(timeEcho($info['alltime'][0]))?></div></div>
+       <div class="juggler_infobox"><div class='cnt js14 text-primary'>次のレベルまで</div>
+       <div class='cnt bold js24'><?= h($info['lefttime'])?></div></div>
        <?php if($juggler->introduction) : ?>
-       <div class="con_box"><div id='j_title'>自己紹介</div>
+       <div class="juggler_infobox"><div class='cnt js14 text-primary'>自己紹介</div>
        <div class='well well-sm'><?= nl2br(h($juggler->introduction))?></div></div>
 
      <?php endif; ?>

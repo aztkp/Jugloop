@@ -55,76 +55,84 @@
            <li class="active">Posts</li>
         </ul>
 
-          <?php foreach ($posts as $post) : ?>
-          <div class="juggling_post">
-          <div class="panel panel-default">
-        	<div class="panel-heading">
-              <!-- <a href="status.php?id=<?php echo h($post->id); ?>"> -->
-              <?php echo date("n月d日 G:i", strtotime(h($post->created)));?>
-            <!-- </a> -->
-        	</div>
-        	<div class="panel-body">
-            <div class="jikan_box">
-          		<span class="glyphicon glyphicon-time"></span><span id="jikan"><?php echo h(timeEcho($post->time)); ?></span>
-            </div>
-            <div class="tool_box">
-              <span class="glyphicon glyphicon-wrench"></span><span id="tool">
-              <?php switch ($post->tool) {
-                case "1" :
-                  echo "ボール";
-                  break;
-                case "2" :
-                  echo "クラブ";
-                  break;
-                case "3" :
-                  echo "リング";
-                  break;
-                case "4" :
-                  echo "ディアボロ";
-                  break;
-                case "5" :
-                  echo "デビルスティック";
-                  break;
-                case "6" :
-                  echo "フラワースティック";
-                  break;
-                case "7" :
-                  echo "シガーボックス";
-                  break;
-                case "8" :
-                  echo "コンタクトボール";
-                  break;
-                case "9" :
-                  echo "けん玉";
-                  break;
-                case "10" :
-                  echo "ポイ・スタッフ";
-                  break;
-                case "11" :
-                  echo "ヨーヨー";
-                  break;
-                case "12" :
-                  echo "その他";
-                  break;
-              }
-              ?></span>
-            </div>
-          <?php if($post->hitokoto): ?>
-          <div class="well well-sm" id="hitokoto">
-              <?php echo h($post->hitokoto); ?>
+        <?php foreach ($posts as $post) : ?>
+          <?php  $userinfo = $postClass->getInfoFromId($post->user_id); ?>
+        <div class="juggling_post">
+        <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="juggler/<?= h($post->user_id);?>">
+          <img src="http://furyu.nazo.cc/twicon/<?= h($user->getScreenName($post->user_id)); ?>/original" width="70" class="left-fixed" id="post_userimg"/></a>
+
+          <div class="post_userinfo">
+            <a href="juggler/<?= h($post->user_id);?>">
+            <strong><?= h($user->getJugglerName($post->user_id)); ?></strong></a>
+            <strong><span id="post_lv">- Lv.<?= h($userinfo['level']) ?></span></strong>
+               <span class="js12 text-muted" style="margin-left: 15px;"><?= date("n月d日 G:i", strtotime(h($post->created)));?>に記録</span>
           </div>
-        <?php endif; ?>
-          <div class="infotool js14">
-          <a href="edit/<?php echo h($post->id);?>">編集</a> ｜ <a href="delete/<?php echo h($post->id); ?>" >削除</a>
+
+          <div class="cnt" style="padding-top: 10px;">
+            <span id="post_time"><span class="glyphicon glyphicon-time js20"></span><?= h(timeEcho($post->time));?></span>
+          </div>
+          <div class="cnt text-primary" style="padding-left: 70px;">
+            <span id="post_tool"><span class="glyphicon glyphicon-wrench"></span>
+            <?php switch ($post->tool) {
+              case "1" :
+                echo "ボール";
+                break;
+              case "2" :
+                echo "クラブ";
+                break;
+              case "3" :
+                echo "リング";
+                break;
+              case "4" :
+                echo "ディアボロ";
+                break;
+              case "5" :
+                echo "デビルスティック";
+                break;
+              case "6" :
+                echo "フラワースティック";
+                break;
+              case "7" :
+                echo "シガーボックス";
+                break;
+              case "8" :
+                echo "コンタクトボール";
+                break;
+              case "9" :
+                echo "けん玉";
+                break;
+              case "10" :
+                echo "ポイ・スタッフ";
+                break;
+              case "11" :
+                echo "ヨーヨー";
+                break;
+              case "12" :
+                echo "その他";
+                break;
+            }
+            ?></span>
+          </div>
+        <?php if($post->hitokoto): ?>
+        <div class="well well-sm" id="hitokoto">
+            <?php echo h($post->hitokoto); ?>
         </div>
-          </div>
-        	</div>
-          </div>
-        <?php endforeach; ?>
+      <?php endif; ?>
+
+     <?php if($me->id === $post->user_id): ?>
+        <div class="right-fixed js14" style="margin-top: 5px;">
+        <a href="edit/<?php echo h($post->id);?>">編集</a> ｜ <a href="delete/<?php echo h($post->id); ?>" >削除</a>
+        </div>
+    <?php endif; ?>
+        </div>
+        </div>
+        </div>
+      <?php endforeach; ?>
         <?php if (!isset($post)) : ?>
           <div class="alert alert-success" id="mes_box">
             まだ練習記録が存在しません。<br>
-            練習を記録しましょう！
         </div>
       </div>
         <?php endif; ?>
