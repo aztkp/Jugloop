@@ -54,12 +54,14 @@
 
       <div class="well">
         ルール<br>
-        　・技と技のインターバルは1秒以内とする<br>
+        ・両抜きの回数をそのまま単位とする<br>
+        ・技と技のインターバルは1秒以内とする<br>
+        ・道具が手以外の部分に触れた時、失敗とする
       </div>
 
       <div class="panel panel-default trick_panel">
         <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 1 (2pt)</div></div>
-        <div class="trick_count_box text-success"><div id="trick_count">3回</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">1回</div></div>
         <div class="trick_btn_box">
           <?php if($stamp->isDoneByCigar($me->id, 3, 1, 0) && $stamp->isDoneByCigar($me->id, 3, 2, 0)): ?>
             <button class="btn btn-primary disabled">達成済
@@ -86,7 +88,7 @@
 
       <div class="panel panel-default trick_panel">
         <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 2 (4pt)</div></div>
-        <div class="trick_count_box text-success"><div id="trick_count">5回</div>
+        <div class="trick_count_box text-success"><div id="trick_count">3回</div>
         </div><div class="trick_btn_box">
           <?php if($stamp->isDoneByCigar($me->id, 3, 2, 0) && $stamp->isDoneByCigar($me->id, 3, 3, 0)): ?>
             <button class="btn btn-primary disabled">達成済
@@ -115,7 +117,7 @@
 
       <div class="panel panel-default trick_panel">
         <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 3 (6pt)</div></div>
-        <div class="trick_count_box text-success"><div id="trick_count">10回</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">5回</div></div>
         <div class="trick_btn_box">
           <?php if($stamp->isDoneByCigar($me->id, 3, 3, 0) && $stamp->isDoneByCigar($me->id, 3, 4, 0)): ?>
             <button class="btn btn-primary disabled">達成済
@@ -144,7 +146,7 @@
 
       <div class="panel panel-default trick_panel">
         <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 4 (8pt)</div></div>
-        <div class="trick_count_box text-success"><div id="trick_count">20回</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">10回</div></div>
         <div class="trick_btn_box">
           <?php if($stamp->isDoneByCigar($me->id, 3, 4, 0) && $stamp->isDoneByCigar($me->id, 3, 5, 0)): ?>
             <button class="btn btn-primary disabled">達成済
@@ -173,7 +175,7 @@
 
       <div class="panel panel-default trick_panel">
         <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 5 (10pt)</div></div>
-        <div class="trick_count_box text-success"><div id="trick_count">30回</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">20回</div></div>
         <div class="trick_btn_box">
           <?php if($stamp->isDoneByCigar($me->id, 3, 5, 0)): ?>
             <form action="delete" method="post">
@@ -208,7 +210,7 @@
 
       <div class="panel panel-default trick_panel">
         <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 1 (2pt)</div></div>
-        <div class="trick_count_box text-success"><div id="trick_count">3回</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">1回</div></div>
         <div class="trick_btn_box">
           <?php if($stamp->isDoneByCigar($me->id, 3, 1, 1) && $stamp->isDoneByCigar($me->id, 3, 2, 1)): ?>
             <button class="btn btn-primary disabled">達成済
@@ -235,7 +237,7 @@
 
       <div class="panel panel-default trick_panel">
         <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 2 (8pt)</div></div>
-        <div class="trick_count_box text-success"><div id="trick_count">5回</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">3回</div></div>
         <div class="trick_btn_box">
           <?php if($stamp->isDoneByCigar($me->id, 3, 2, 1) && $stamp->isDoneByCigar($me->id, 3, 3, 1)): ?>
             <button class="btn btn-primary disabled">達成済
@@ -264,7 +266,7 @@
 
       <div class="panel panel-default trick_panel">
         <div class="text-success level_txt trick_title_box"><div id="trick_level"><span class="glyphicon glyphicon-flash"></span>Level 3 (10pt)</div></div>
-        <div class="trick_count_box text-success"><div id="trick_count">10回</div></div>
+        <div class="trick_count_box text-success"><div id="trick_count">5回</div></div>
         <div class="trick_btn_box">
           <?php if($stamp->isDoneByCigar($me->id, 3, 3, 1)): ?>
             <form action="delete" method="post">

@@ -88,7 +88,6 @@
             <div id="top_m_title">次の段位まで</div>
             <div id="top_m_time"><?= h($info['lefttime'])?></div>
             <div class="infotool js12">
-            <a href="/juggler/<?= h($me->id);?>">>>詳しく見る</a>
           </div>
           </div>
         </div>
