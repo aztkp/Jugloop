@@ -19,16 +19,30 @@ class Post {
     }
   }
 
-  public function getPosts($id) {
-    $followersId = $this->getFollow($id);
+  public function getPosts($id, $offset) {
+    $followersId = $this->_getFollow($id);
     $followersId = implode(',', $followersId);
-    $sql = sprintf("select * from posts where user_id in ($followersId) order by created desc");
+    $sql = sprintf("select * from posts where user_id in ($followersId) order by created desc limit %d, 3", $offset);
     $stmt = $this->_db->query($sql);
     $res = $stmt->fetchAll(\PDO::FETCH_OBJ);
     return $res;
   }
 
-  public function getFollow($user_id) {
+  public function getPostsNum($id) {
+    $followersId = $this->_getFollow($id);
+    $followersId = implode(',', $followersId);
+    $sql = sprintf("select count(*) from posts where user_id in ($followersId) order by created desc");
+    $stmt = $this->_db->query($sql);
+    return $stmt->fetchAll(\PDO::FETCH_NUM)[0][0];
+  }
+
+  public function getPagesNum($id) {
+    $postsNum = $this->getPostsNum($id);
+    $res = (int)ceil($postsNum / 3);
+    return $res;
+  }
+
+  private function _getFollow($user_id) {
     $sql = sprintf("select user_id from following where follower_id=%d", $user_id);
     $stmt = $this->_db->query($sql);
     $followers = $stmt->fetchAll(\PDO::FETCH_OBJ);
@@ -40,11 +54,19 @@ class Post {
     return $followersId;
   }
 
+  /* 指定したユーザーのポストのみ取得 */
+
   public function getUserPosts($id) {
     $sql = sprintf("select * from posts where user_id=%d order by created desc", $id);
     $stmt = $this->_db->query($sql);
     $res = $stmt->fetchAll(\PDO::FETCH_OBJ);
     return $res;
+  }
+
+  public function getUserPostsNum($id) {
+    $sql = sprintf("select count(*) from posts where user_id=%d", $id);
+    $stmt = $this->_db->query($sql);
+    return $stmt->fetchAll(\PDO::FETCH_NUM)[0][0];
   }
 
   private function _isFollowing($user_id) {
@@ -85,14 +107,6 @@ class Post {
     }
   }
 
-  private function _calcTime($kaishi, $owari) {
-    // $kaishiSec = strtotime($kaishi);
-    // $owariSec = strtotime($owari);
-    // $dif = $owariSec - $kaishiSec;
-    // $result = gmdate("H:i", $dif);
-    return $result;
-  }
-
   public function _isExists($post_id) {
     $sql = sprintf("select count(*) from posts where id=%d", $post_id);
     $res = $this->_db->query($sql);
@@ -104,12 +118,6 @@ class Post {
     $stmt = $this->_db->query($sql);
     $res = $stmt->fetch(\PDO::FETCH_OBJ);
     return $res;
-  }
-
-  public function getPostsNum($id) {
-    $sql = sprintf("select count(*) from posts where user_id=%d", $id);
-    $stmt = $this->_db->query($sql);
-    return $stmt->fetchAll(\PDO::FETCH_NUM)[0][0];
   }
 
   public function updatePost($id, $post) {
@@ -153,6 +161,14 @@ class Post {
     list ($INFO['level'], $INFO['left']) = $this->_getLevel((int)$INFO['alltimeM']);
     $INFO['lefttime'] = $this->toMin2($INFO['left']);
     return $INFO;
+  }
+
+  private function _calcTime($kaishi, $owari) {
+    // $kaishiSec = strtotime($kaishi);
+    // $owariSec = strtotime($owari);
+    // $dif = $owariSec - $kaishiSec;
+    // $result = gmdate("H:i", $dif);
+    return $result;
   }
 
   private function _getAllTime($id) {

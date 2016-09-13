@@ -8,7 +8,6 @@
 
   if ($twitterLogin->isLoggedIn()) {
     $me = $_SESSION['me'];
-    $posts = $postClass->getPosts($me->id);
   } else {
     goHome();
   }

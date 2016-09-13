@@ -4,14 +4,23 @@
   $twitterLogin = new MyApp\TwitterLogin();
   $user = new MyApp\User();
   $postClass = new MyApp\Post();
+  $page = 1;
 
   if ($twitterLogin->isLoggedIn()) {
     $me = $_SESSION['me'];
     $juggler = $user->getUserFromId($me->id);
     $info = $postClass->getInfoFromId($me->id);
-    $posts = $postClass->getPosts($me->id);
-  }
+    if($_GET) {
+      $page = $_GET['p'];
+    }
 
+    $posts = $postClass->getPosts($me->id, ($page-1)*3);
+    $pageMenu = $postClass->getPagesNum($me->id);
+
+    if ($pageMenu > 5) $pageMenu = 5;
+
+
+  }
  ?>
 
 <!DOCTYPE html>
@@ -150,6 +159,15 @@
         	</div>
           </div>
         <?php endforeach; ?>
+        <div class="cnt">
+          <ul class="pagination pagination-lg">
+            <li class="disabled"><a>&laquo;</a></li>
+            <?php for ($i=0; $i<$pageMenu; $i++): ?>
+              <li<?php if($i === $page-1) echo " class=\"active\""?>><a<?php if($i!==$page-1) echo " href=\"index?p=" . ($i+1) . "\"";?>><?= $i+1; ?></a></li>
+            <?php endfor; ?>
+            <li><a href="#">&raquo;</a></li>
+          </ul>
+        </div>
         <?php if (!isset($post)) : ?>
           <div class="alert alert-success cnt">
             まだ練習記録が存在しません。<br>
@@ -160,6 +178,10 @@
       <?php else: ?>
         <?php include_once('top.html') ?>
       <?php endif; ?>
+
+      <?php var_dump($postClass->getPostsNum($me->id)); ?>
+      <?php var_dump($postClass->getPagesNum($me->id)); ?>
+      <?php var_dump($page); ?>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

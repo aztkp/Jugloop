@@ -9,7 +9,6 @@
   if ($twitterLogin->isLoggedIn()) {
     $me = $_SESSION['me'];
     $juggler = $user->getUserFromId($me->id);
-    $posts = $postClass->getPosts($me->id);
     $info = $postClass->getInfoFromId($me->id);
     $stamps = $stamp->getCigarStatus($me->id);
   }

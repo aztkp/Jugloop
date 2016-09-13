@@ -110,7 +110,7 @@
              <tr>
                <td class="js20">
                  <a href="<?= h($juggler->id) ?>/posts ">
-                 <?= h($post->getPostsNum($juggler->id)); ?>
+                 <?= h($post->getUserPostsNum($juggler->id)); ?>
                  </a>
                </td>
                <td class="js20">
