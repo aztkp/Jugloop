@@ -22,7 +22,7 @@ class Post {
   public function getPosts($id, $offset) {
     $followersId = $this->_getFollow($id);
     $followersId = implode(',', $followersId);
-    $sql = sprintf("select * from posts where user_id in ($followersId) order by created desc limit %d, 3", $offset);
+    $sql = sprintf("select * from posts where user_id in ($followersId) order by created desc limit %d, 10", $offset);
     $stmt = $this->_db->query($sql);
     $res = $stmt->fetchAll(\PDO::FETCH_OBJ);
     return $res;
@@ -38,7 +38,7 @@ class Post {
 
   public function getPagesNum($id) {
     $postsNum = $this->getPostsNum($id);
-    $res = (int)ceil($postsNum / 3);
+    $res = (int)ceil($postsNum / 10);
     return $res;
   }
 

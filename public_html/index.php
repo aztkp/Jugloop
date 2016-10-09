@@ -4,21 +4,33 @@
   $twitterLogin = new MyApp\TwitterLogin();
   $user = new MyApp\User();
   $postClass = new MyApp\Post();
+  $commentClass = new MyApp\Comment();
   $page = 1;
 
   if ($twitterLogin->isLoggedIn()) {
     $me = $_SESSION['me'];
     $juggler = $user->getUserFromId($me->id);
     $info = $postClass->getInfoFromId($me->id);
+
+  // pagenation
+
     if($_GET) {
       $page = $_GET['p'];
     }
 
-    $posts = $postClass->getPosts($me->id, ($page-1)*3);
+    $allPageNum = $postClass->getPagesNum($me->id);
+
+
+    $disp = 5;
+    $next = $page + 1;
+    $prev = $page - 1;
+    $start = ($page - floor($disp/2))> 0 ? ($page - ceil($disp/2)) : 1;
+    $end = ($page + floor($disp/2)) > $disp ? ($page + floor($disp/2)) : $disp;
+    if ($end > $allPageNum) $end = $allPageNum;
+    $start = (0 < $end - 5) ? $end-4 : 1;
+
+    $posts = $postClass->getPosts($me->id, ($page-1)*10);
     $pageMenu = $postClass->getPagesNum($me->id);
-
-    if ($pageMenu > 5) $pageMenu = 5;
-
 
   }
  ?>
@@ -52,19 +64,22 @@
     <div class="main">
       <?php if ($twitterLogin->isLoggedIn()): ?>
       <div style="overflow: hidden;">
+
       <div class="top_btnbox">
         <div id="button">
           <a href="new"><button class="btn btn-warning btn-block top_btn">練習を記録</button></a>
         </div>
       </div>
-      <div class="top_btnbox">
-        <div id="button">
-          <a href="stamp/cigar"><button class="btn btn-warning btn-block top_btn">スタンプ</button></a>
-        </div>
-      </div>
+
       <div class="top_btnbox">
         <div id="button">
           <a href="juggler/<?=h($me->id);?>"><button class="btn btn-warning btn-block top_btn">マイページ</button></a>
+        </div>
+      </div>
+
+      <div class="top_btnbox">
+        <div id="button">
+          <a href="find"><button class="btn btn-warning btn-block top_btn">友達を探す</button></a>
         </div>
       </div>
     </div>
@@ -88,6 +103,7 @@
 
           <?php foreach ($posts as $post) : ?>
             <?php  $userinfo = $postClass->getInfoFromId($post->user_id); ?>
+            <?php $commentNum = $commentClass->getCommentNum($post->id); ?>
           <div class="panel panel-default" style="margin-bottom: 20px;">
         	<div class="panel-body">
             <a href="juggler/<?= h($post->user_id);?>">
@@ -146,43 +162,43 @@
               ?></span>
             </div>
           <?php if($post->hitokoto): ?>
-          <div class="well well-sm" id="post_memo">
+          <div class="well well-sm" id="post_memo" style="margin-bottom: 20px;">
               <?php echo h($post->hitokoto); ?>
           </div>
+        <?php else : ?>
+          <hr>
         <?php endif; ?>
-
-       <?php if($me->id === $post->user_id): ?>
-          <div class="right-fixed js14" style="margin-top: 5px;">
-          <a href="edit/<?php echo h($post->id);?>">編集</a> ｜ <a href="delete/<?php echo h($post->id); ?>" >削除</a>
+          <div class="right-fixed js14" style="margin-top: -5px;">
+            <div style="display:inline-flex">
+            <a href="status/<?= h($post->id) ?>"><button type="button" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-comment"></i> コメント ( <?= h($commentNum); ?> )</button></a>
+            </div>
           </div>
-      <?php endif; ?>
         	</div>
           </div>
         <?php endforeach; ?>
+
         <div class="cnt">
           <ul class="pagination pagination-lg">
-            <li class="disabled"><a>&laquo;</a></li>
-            <?php for ($i=0; $i<$pageMenu; $i++): ?>
-              <li<?php if($i === $page-1) echo " class=\"active\""?>><a<?php if($i!==$page-1) echo " href=\"index?p=" . ($i+1) . "\"";?>><?= $i+1; ?></a></li>
+            <li class="<?php if($page == 1) echo "disabled";?>"><a <?php
+            if ($page != 1) echo " href=\"index?p=1\"";?>>&laquo;</a></li>
+            <?php for ($i=$start; $i<=$end; $i++): ?>
+              <li<?php if($i == $page) echo " class=\"active\""?>><a<?php if($i!==$page) echo " href=\"index?p=" . $i . "\"";?>><?= $i; ?></a></li>
             <?php endfor; ?>
-            <li><a href="#">&raquo;</a></li>
+            <li class="<?php if($page == $allPageNum) echo "disabled";?>"><a <?php
+              if ($page != $allPageNum) echo " href=\"index?p=" . $allPageNum . "\"";?>>&raquo;</a></li>
           </ul>
         </div>
         <?php if (!isset($post)) : ?>
           <div class="alert alert-success cnt">
             まだ練習記録が存在しません。<br>
             練習を記録しましょう！
-        </div>
-      </div>
+          </div>
         <?php endif; ?>
       <?php else: ?>
         <?php include_once('top.html') ?>
       <?php endif; ?>
-
-      <?php var_dump($postClass->getPostsNum($me->id)); ?>
-      <?php var_dump($postClass->getPagesNum($me->id)); ?>
-      <?php var_dump($page); ?>
-
+      </div>
+      <?php include_once('footer.php') ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -5,6 +5,7 @@ RewriteRule ^juggler/([0-9]+)/follow$ juggler/follow.php?id=$1
 RewriteRule ^juggler/([0-9]+)/follower$ juggler/follower.php?id=$1
 RewriteRule ^edit/([0-9]+)$ edit.php?id=$1
 RewriteRule ^delete/([0-9]+)$ delete.php?id=$1
+RewriteRule ^status/([0-9]+)$ status.php?id=$1
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php

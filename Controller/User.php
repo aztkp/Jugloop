@@ -264,4 +264,79 @@ class User {
     $stmt = $this->_db->query($sql);
     return $stmt->fetchAll(\PDO::FETCH_OBJ)[0]->juggler_name;
   }
+
+  public function getCircleName($num, $offset) {
+    $sql = sprintf("select distinct circle from users limit %d, %d", $offset, $num);
+    $stmt = $this->_db->query($sql);
+    $res = $stmt->fetchAll(\PDO::FETCH_OBJ);
+    return $res;
+  }
+
+  public function getCircleMembersNum($circle) {
+    $sql = sprintf("select count(*) from users where circle = :circle");
+    $stmt = $this->_db->prepare($sql);
+    $stmt->bindValue(':circle', $circle, \PDO::PARAM_STR);
+
+    try {
+      $stmt->execute();
+      $res = $stmt->rowCount();
+      $res = $stmt->fetchAll(\PDO::FETCH_NUM)[0][0];
+      return $res;
+    } catch (\PDOException $e) {
+      throw new \Exception('Failed to get user!');
+    }
+  }
+
+  public function getUsersFromCircleName($circle) {
+    $sql = sprintf("select * from users where circle = :circle");
+    $stmt = $this->_db->prepare($sql);
+    $stmt->bindValue(':circle', $circle, \PDO::PARAM_STR);
+    try {
+      $stmt->execute();
+      $res = $stmt->rowCount();
+      $res = $stmt->fetchAll(\PDO::FETCH_OBJ);
+      return $res;
+    } catch (\PDOException $e) {
+      throw new \Exception('Failed to get user!');
+    }
+  }
+
+  public function getUnregisteredNum() {
+    $sql = sprintf("select count(*) from users where circle is NULL");
+    $stmt = $this->_db->prepare($sql);
+    try {
+      $stmt->execute();
+      $res = $stmt->rowCount();
+      $res = $stmt->fetchAll(\PDO::FETCH_NUM)[0][0];
+      return $res;
+    } catch (\PDOException $e) {
+      throw new \Exception('Failed to get user!');
+    }
+  }
+
+  public function getCircleUnregisterUsers() {
+    $sql = sprintf("select * from users where circle is NULL");
+    $stmt = $this->_db->prepare($sql);
+    try {
+      $stmt->execute();
+      $res = $stmt->rowCount();
+      $res = $stmt->fetchAll(\PDO::FETCH_OBJ);
+      return $res;
+    } catch (\PDOException $e) {
+      throw new \Exception('Failed to get user!');
+    }
+  }
+
+  public function getLatestUsers($num) {
+    $sql = sprintf("select * from users order by created desc limit %d", $num);
+    $stmt = $this->_db->prepare($sql);
+    try {
+      $stmt->execute();
+      $res = $stmt->rowCount();
+      $res = $stmt->fetchAll(\PDO::FETCH_OBJ);
+      return $res;
+    } catch (\PDOException $e) {
+      throw new \Exception('Failed to get user!');
+    }
+  }
 }

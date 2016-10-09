@@ -5,12 +5,31 @@
   $userClass = new MyApp\User();
   $postClass = new MyApp\Post();
 
+  if($_GET) {
+    $circleName = urldecode($_GET['name']);
+  } else {
+     header('Location: /find');
+  }
+
+  $unregistered = false;
+  if($circleName == "unregistered" && $_GET['unregistered'] == true) {
+    $unregistered = true;
+  }
+
+  $memberNum = $userClass->getCircleMembersNum($_GET['name']);
+
   if ($twitterLogin->isLoggedIn()) {
     $me = $_SESSION['me'];
     $juggler = $userClass->getUserFromId($me->id);
-    $users = $userClass->getLatestUsers(10);
+    if (!$unregistered) {
+      $users = $userClass->getUsersFromCircleName($circleName);
+    } else {
+      $users = $userClass->getCircleUnregisterUsers();
+    }
     $circles = $userClass->getCircleName(10, 1);
   }
+
+
  ?>
 
 <!DOCTYPE html>
@@ -43,24 +62,18 @@
       <?php if ($twitterLogin->isLoggedIn()): ?>
         <ul class="breadcrumb">
           <li><a href="/">Top</a></li>
-          <li class="active">Find</li>
+          <li><a href="/find">Find</a></li>
+          <li class="active"><?php if(!$unregistered):?><?=h($circleName);?><?php else:?><?="Unregistered";?>
+            <?php endif; ?>
+          </li>
         </ul>
+        <?php if ($memberNum == 0 && !$unregistered) : ?>
+          <div class="alert alert-warning" role="alert">
+          お探しのページは存在しません。
+        </div>
+        <?php else: ?>
 
-        <h3>サークルで探す</h3>
-
-
-        <?php foreach($circles as $circle) : ?>
-          <?php $enCircle = urlencode($circle->circle) ?>
-          <a href="circle?name=<?= h($enCircle); ?>">
-          <?= h($circle->circle); ?>
-          (<?= h($userClass->getCircleMembersNum("$circle->circle"))?>)
-          </a>
-          <br>
-        <?php endforeach; ?>
-        <a href="circle?name=unregistered&unregistered=true">未登録
-          (<?= h($userClass->getUnregisteredNum());?>)</a>
-
-        <h3>最近登録したジャグラー</h3>
+          <span class="js24"><?php if(!$unregistered){echo h($circleName);}else{echo "サークル未登録者";}?></span>
 
         <?php foreach($users as $user): ?>
 
@@ -141,7 +154,7 @@
             </div>
           </div>
         <?php endforeach; ?>
-
+      <?php endif; ?>
       <?php endif; ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

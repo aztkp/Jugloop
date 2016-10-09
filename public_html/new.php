@@ -42,6 +42,10 @@
   <body>
     <?php include_once('navbar.php') ?>
     <div class="main">
+      <ul class="breadcrumb">
+        <li><a href="/">Top</a></li>
+        <li class="active">New</li>
+      </ul>
     <h1 class="page-header">記録する</h1>
     <form class="form-horizontal" method="post">
 
@@ -97,8 +101,8 @@
        </div>
      </div>
     </form>
-
   </div>
+  <?php include_once('footer.php') ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
